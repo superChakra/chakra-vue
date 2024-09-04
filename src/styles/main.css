@@ -1,0 +1,12 @@
+.el-dropdown,
+.el-dropdown:hover {
+  outline: none;
+  border: none;
+}
+
+/* 如果边框出现在子元素上，例如触发器或下拉菜单 */
+.el-dropdown .el-tooltip__trigger,
+.el-dropdown .el-tooltip__trigger:hover {
+  outline: none;
+  border: none;
+}

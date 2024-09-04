@@ -5,10 +5,19 @@ export default {
     extend: {
       backgroundImage: {
         "logo-url": "url('@/assets/logo.png')",
-        "login-url":"url('@/assets/login.png')"
+        "login-url": "url('@/assets/login.png')",
+      },
+      height: {
+        160: "40rem",
+        128: "32rem",
+        100: "25rem",
+      },
+      width: {
+        160: "40rem",
+        128: "32rem",
+        100: "25rem",
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
-

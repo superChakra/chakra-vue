@@ -3,7 +3,6 @@ import { Search, ArrowRightBold } from '@element-plus/icons-vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import type { TabsPaneContext } from 'element-plus'
-import { ta } from 'element-plus/es/locales.mjs';
 const router = useRouter();
 const searchInput = ref('')
 const handleSearch = () => {
@@ -24,11 +23,12 @@ const handleShowView = () => {
 }
 
 const handleLogOut = () => {
+
   alert('退出登陆')
 }
 
 const handleSelectMenubar = (tab: TabsPaneContext, event: Event) => {
-  alert(tab.props.label + " " + tab.props.name)
+  console.log(tab.props.label + " " + tab.props.name)
 }
 const handleShowMore = () => {
   alert('查看更多')
@@ -44,10 +44,24 @@ const handleSelectMessage = (index: any) => {
 }
 
 const selectValue = ref('')
-const userAvator = ref('')
-const userAvatorError = ref('src/assets/avator.jpg')
+
+const userAvator = ref('src/assets/avator.jpg')
+
 const menubar = ref('first')
 
+const activeIndex = ref('1')
+
+const handleSelect = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
+
+const handleShowHistory = () => {
+  router.push('/user-center/history')
+}
+
+const handleShowContentCenter = () => {
+  router.push("/content-center/article-manager")
+}
 const articleList = ref([
   {
     "id": "1",
@@ -87,17 +101,17 @@ const articleList = ref([
 
 <template>
   <!-- Head -->
-  <div class="flex flex-col bg-white h-lvh">
+  <div class="flex flex-col bg-white min-h-screen outline-none">
     <div class="flex justify-around bg-white h-16 w-full">
       <div class=" flex flex-1 flex-row items-center h-16 bg-gray-300">
         <div class="flex justify-center items-center h-full w-1/12 mx-2">
-          <a href="/" class=" bg-logo-url bg-cover h-14 w-14" title="logo"></a>
+          <a href="/" class="bg-logo-url bg-cover h-14 w-14" title="logo"></a>
         </div>
         <div class=" flex flex-row justify-center items-center h-full w-4/12 lg:mx-6 md:mx-4 sm:mx-2">
-          <a href="/" title="首页" class="  text-xl mx-3 2xl:mx-10 lg:mx-7 md:mx-4 ">首页</a>
-          <a href="/blog" title="博客" class="  text-xl mx-3 2xl:mx-10 lg:mx-7 md:mx-4">博客</a>
-          <a href="/project" title="项目" class="  text-xl mx-3  2xl:mx-10 lg:mx-7 md:mx-4">项目</a>
-          <a href="#" title="占位符" class=" text-xl mx-3 2xl:mx-10 lg:mx-7 md:mx-4">占位</a>
+          <a href="/" title="首页" class="text-xl mx-3 2xl:mx-10 lg:mx-7 md:mx-4 ">首页</a>
+          <a href="/blog" title="博客" class="text-xl mx-3 2xl:mx-10 lg:mx-7 md:mx-4">博客</a>
+          <a href="/project" title="项目" class="text-xl mx-3  2xl:mx-10 lg:mx-7 md:mx-4">项目</a>
+          <a href="#" title="占位符" class="text-xl mx-3 2xl:mx-10 lg:mx-7 md:mx-4">占位</a>
         </div>
         <div class="flex items-center h-full w-3/12 mx-3 -ml-6">
           <el-input v-model="searchInput" placeholder="请输入搜索内容" class="h-8 w-4/5">
@@ -109,18 +123,13 @@ const articleList = ref([
         <div class="flex flex-row items-center h-full w-4/12">
           <div @click="handleCheckLoginStatus" title="用户" class="flex items-center h-16 w-16 sm:mx-2 md:mx-4 2xl:mx-10">
             <el-dropdown>
-              <el-image :src="userAvator" class="rounded-full h-14 w-14">
-                <template #error>
-                  <img :src="userAvatorError">
-                </template>
-              </el-image>
+              <img :src="userAvator" class="rounded-full h-14 w-14 object-cover">
               <template #dropdown>
                 <el-dropdown-menu>
                   <el-dropdown-item>
-                    <div @click="handleLogOut">
-                      退出登陆
-                    </div>
+                    <a @click="handleLogOut">退出登陆</a>
                   </el-dropdown-item>
+ 0
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
@@ -137,31 +146,8 @@ const articleList = ref([
               </el-dropdown-menu>
             </template>
           </el-dropdown>
-          <el-dropdown class="2xl:mx-6 lg:mx-4 md:mx-2 sm:mx-0 ">
-            <span class="text-base text-black">历史记录</span>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <div class="flex h-72 w-64">
-                  <div class="h-full w-full bg-white">
-                    
-                  </div>
-                </div>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
-
-          <el-dropdown class="2xl:mx-6 lg:mx-4 md:mx-2 sm:mx-0 ">
-            <span class="text-base text-black">创作中心</span>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <div class="flex h-72 w-64">
-                  <div class="h-full w-full ">
-
-                  </div>
-                </div>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
+          <span class="2xl:mx-6 lg:mx-4 md:mx-2 sm:mx-0 cursor-pointer text-base" @click="handleShowHistory">历史记录</span>
+          <span class="2xl:mx-6 lg:mx-4 md:mx-2 sm:mx-0 cursor-pointer text-base" @click="handleShowContentCenter">内容中心</span>
         </div>
       </div>
     </div>
@@ -184,7 +170,7 @@ const articleList = ref([
               <div class="flex flex-row bg-white h-32 w-full mb-1 border-solid border-gray border-b rounded-md"
                 v-for="article in articleList" :key="article.id">
                 <div class=" flex w-3/12 h-full">
-                  <img src="@/assets/sercurity.png" class=" flex h-full w-full object-cover">
+                  <img src="@/assets/security.png" class=" flex h-full w-full object-cover">
                 </div>
                 <div class="flex flex-col w-9/12 ">
                   <div class="flex flex-col w-full h-full">
@@ -219,20 +205,14 @@ const articleList = ref([
               <div class="flex flex-col h-full w-full">
                 <div class="flex flex-row-reverse items-center pr-4 pt-4 mb-2" title="更多">
                   <span class="flex cursor-pointer " @click="handleShowMore">
-                    <el-icon>
-                      <ArrowRightBold />
-                    </el-icon>
+                    <el-icon><ArrowRightBold /></el-icon>
                   </span>
                   <span class="flex cursor-pointer " @click="handleShowMore">更多</span>
                 </div>
                 <div class="flex flex-col h-full w-full">
                   <div class="flex flex-row justify-between h-full w-full" v-for="item in 10" :key="item">
-                    <span class="flex pl-6 cursor-default">
-                      文章标题
-                    </span>
-                    <span class="flex pr-6 cursor-default">
-                      热度
-                    </span>
+                    <span class="flex pl-6 cursor-default">文章标题</span>
+                    <span class="flex pr-6 cursor-default">热度</span>
                   </div>
                 </div>
               </div>
@@ -242,8 +222,6 @@ const articleList = ref([
       </el-row>
 
     </div>
-
-
     <!-- foot部分 -->
     <div class="flex h-52 w-full items-center justify-center bg-gray-400">
       <h1 class=" text-gray-600 font-bold text-3xl">欢迎来到chakra的网站,希望你有一个不错的体验</h1>
