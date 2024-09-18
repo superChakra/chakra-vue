@@ -8,6 +8,85 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
+      children: [
+        {
+          path: "/",
+          name: "main",
+          component: () => import("@/views/home/Main.vue"),
+        },
+
+        {
+          path: "/user-center",
+          name: "userCenter",
+          component: () => import("@/views/UserCenter.vue"),
+          children: [
+            {
+              path: "profile",
+              name: "profile",
+              component: () => import("@/views/user/Profile.vue"),
+            },
+            {
+              path: "account",
+              name: "account",
+              component: () => import("@/views/user/Account.vue"),
+            },
+            {
+              path: "auth",
+              name: "auth",
+              component: () => import("@/views/user/Auth.vue"),
+            },
+            {
+              path: "history",
+              name: "history",
+              component: () => import("@/views/user/History.vue"),
+            },
+            {
+              path: "favorite",
+              name: "favorite",
+              component: () => import("@/views/user/Favorite.vue"),
+            },
+          ],
+        },
+        {
+          path: "/content-center",
+          name: "contentCenter",
+          component: () => import("@/views/ContentCenter.vue"),
+          children: [
+            {
+              path: "article-manager",
+              name: "articleManager",
+              component: () => import("@/views/content/ArticleManager.vue"),
+            },
+            {
+              path: "comment-manager",
+              name: "commentManager",
+              component: () => import("@/views/content/CommentManager.vue"),
+            },
+          ],
+        },
+        {
+          path: "/article",
+          name: "articleDetail",
+          component: () => import("@/views/content/ArticleDetail.vue"),
+        },
+        {
+          path: "/project",
+          name: "projectCenter",
+          component: () => import("@/views/ProjectCenter.vue"),
+        },
+        {
+          path: "/software",
+          name: "software",
+          component: () => import("@/views/software/Software.vue"),
+          children: [
+            {
+              path: "software-detail",
+              name: "softwareDetail",
+              component: () => import("@/views/software/SoftwareDetail.vue"),
+            },
+          ],
+        },
+      ],
     },
     {
       path: "/about",
@@ -27,7 +106,7 @@ const router = createRouter({
     {
       path: "/register",
       name: "register",
-      component: () => import("@/views/register/register.vue"),
+      component: () => import("@/views/register/Register.vue"),
     },
     {
       path: "/work-center",
@@ -41,60 +120,6 @@ const router = createRouter({
         },
       ],
     },
-    {
-      path: "/user-center",
-      name: "userCenter",
-      component: () => import("@/views/UserCenter.vue"),
-      children: [
-        {
-          path: "profile",
-          name: "profile",
-          component: () => import("@/views/user/Profile.vue"),
-        },
-        {
-          path: "account",
-          name: "account",
-          component: () => import("@/views/user/Account.vue"),
-        },
-        {
-          path: "auth",
-          name: "auth",
-          component: () => import("@/views/user/Auth.vue"),
-        },
-        {
-          path: "history",
-          name: "history",
-          component: () => import("@/views/user/History.vue"),
-        },
-        {
-          path: "favorite",
-          name: "favorite",
-          component: () => import("@/views/user/Favorite.vue"),
-        },
-      ],
-    },
-    {
-      path: "/content-center",
-      name: "contentCenter",
-      component: () => import("@/views/ContentCenter.vue"),
-      children:[
-        {
-          path:'article-manager',
-          name:'articleManager',
-          component:()=>import("@/views/content/ArticleManager.vue")
-        },
-        {
-          path:'comment-manager',
-          name:'commentManager',
-          component:()=>import("@/views/content/CommentManager.vue")
-        }
-      ]
-    },
-    {
-      path:'/article',
-      name:"articleDetail",
-      component: ()=>import ("@/views/content/ArticleDetail.vue")
-    }
   ],
 });
 

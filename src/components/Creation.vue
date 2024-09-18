@@ -13,10 +13,30 @@ import TextAlign from '@tiptap/extension-text-align'
 import Image from '@tiptap/extension-image'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { useUserStore } from '@/stores/index'
+import { UploadFilled } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
 const userStore = useUserStore();
-
+const router = useRouter();
 const title = ref('');
 const summary = ref('');
+
+const tagSelectValue = ref('')
+
+const tagList = ref([
+  {
+    id:'1',
+    value:'java'
+  },  
+  {
+    id:'2',
+    value:'python'
+  }, 
+   {
+    id:'3',
+    value:'c++'
+  },
+])
+
 
 const editor = useEditor({
   editorProps: {
@@ -76,8 +96,6 @@ const handlePaste = (event: ClipboardEvent) => {
     }
   }
 }
-
-
 const handleContent = () => {
   if (editor.value) {
 
@@ -87,10 +105,12 @@ const handleContent = () => {
 
 const handleSave = () => {
   alert('保存')
+  router.push('/content-center/article-manager')
 }
 
 const handleSaveAndPublish = () => {
   alert('保存并发布')
+  router.push('/content-center/article-manager')
 }
 onMounted(() => {
   window.addEventListener('paste', handlePaste)
@@ -100,6 +120,7 @@ onUnmounted(() => {
   window.removeEventListener('paste', handlePaste)
 })
 const showWorkDialog = ref(false)
+
 </script>
 
 <template>
@@ -108,9 +129,7 @@ const showWorkDialog = ref(false)
     <!-- Toolbar -->
     <div class="flex flex-wrap h-16 w-full border-b border-gray-300 items-center mx-auto ">
 
-      <div class="flex h-full w-1/6 bg-red-200">
-        <img src="@/assets/work-center.png" class=" object-fill">
-      </div>
+      <div class="flex h-full w-1/6 bg-work-center-url bg-cover"></div>
 
       <div class="flex flex-wrap h-16 w-2/3 border-b border-gray-300 justify-around items-center">
         <!-- Heading Dropdown -->
@@ -252,7 +271,7 @@ const showWorkDialog = ref(false)
       </div>
 
       <div class="flex h-full w-1/6 items-center justify-evenly">
-        <el-button class="w-2/3 h-full" type="success" @click="showWorkDialog = !showWorkDialog">保存</el-button>
+        <el-button class="w-2/3 h-full" type="primary" @click="showWorkDialog = !showWorkDialog">完成</el-button>
       </div>
     </div>
 
@@ -266,22 +285,36 @@ const showWorkDialog = ref(false)
     </div>
   </div>
 
-  <el-dialog v-model="showWorkDialog" width="640px" title="文章内容" class="flex flex-col h-160 w-160 bg-gray-500">
+  <el-dialog v-model="showWorkDialog" width="640px" title="文章设置" class="flex flex-col h-160 w-160 bg-gray-500">
     <div class="flex flex-col items-center h-128 w-full">
       <div class="flex flex-row justify-center items-center h-32 w-full">
         <el-input v-model="title" maxlength="100" placeholder="请输入文章标题" show-word-limit type="text"
           class="w-5/6 h-14" />
       </div>
 
-      <div class="flex flex-row justify-center h-96 w-full ">
-        <el-input v-model="summary" maxlength="100" placeholder="请输入文章摘要  (提示:默认是文章标题)" show-word-limit type="textarea"
-          :autosize="{ minRows: 18 }" class="w-5/6 max-h-96 resize-none overflow-auto" />
+      <div class=" h-40 w-full flex flex-row justify-center ">
+        <el-input v-model="summary" placeholder="请输入文章摘要  (提示:默认是文章标题)" show-word-limit type="textarea"
+          :autosize="{ minRows: 6 }" class="w-5/6 max-h-48 resize-none overflow-auto" />
       </div>
+
+      <el-select v-model="tagSelectValue" filterable placeholder="请选择该文章的标签" size="large" class="w-full flex mt-4">
+        <el-option v-for="item in tagList" :key="item.id" :label="item.value" :value="item.value" />
+      </el-select>
+
+      <el-upload class="w-full h-20 flex-col flex mt-8" drag
+        action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15" multiple>
+        <el-icon class="w-10 h-10">
+          <UploadFilled />
+        </el-icon>
+        <div class="flex justify-center">
+          请上传文章封面
+        </div>
+      </el-upload>
     </div>
     <template #footer>
       <div class="flex justify-end h-20 w-full">
-        <el-button @click="handleSave" class="w-20 mx-10">保存</el-button>
-        <el-button @click="handleSaveAndPublish" class="w-20 mx-5">发布</el-button>
+        <el-button @click="handleSave" type="primary" class="w-20 mx-10">保存</el-button>
+        <el-button @click="handleSaveAndPublish" type="success" class="w-20 mx-5">发布</el-button>
       </div>
     </template>
   </el-dialog>

@@ -2,7 +2,7 @@
 import { useRouter } from 'vue-router';
 const router = useRouter();
 const handleToContentCreation = () => {
-  router.push('/work-center/creation')
+  window.open('/work-center/creation', '_blank');
   console.log('进行创作')
 }
 const handleEditArticle = ()=>{

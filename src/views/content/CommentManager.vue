@@ -22,11 +22,11 @@ const tableData = ref(Array.from({ length: 20 }).fill(item))
     <div class="bg-white shadow-md rounded-lg w-full p-8">
       <div class="flex min-h-screen w-full">
         <el-table :data="comments">
-          <el-table-column prop="author" label="作者" class="w-1/4 bg-red-500" />
+          <el-table-column prop="author" label="用户名" class="w-1/4 bg-red-500" />
           <el-table-column prop="summary" label="评论内容" class="w-1/4 bg-blue-500" />
           <el-table-column prop="date" label="日期" class="w-1/4 bg-green-500" />
           <el-table-column label="操作" class="w-1/4 bg-gray-500 space-x-3">
-            <el-button type="primary">查看</el-button>
+            <el-button type="primary">回复</el-button>
             <el-button type="warning">删除</el-button>
           </el-table-column>
         </el-table>

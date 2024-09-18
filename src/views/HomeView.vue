@@ -35,7 +35,7 @@ const handleShowMore = () => {
 }
 
 const handleShowDetail = () => {
-  alert('展示文章详情')
+  router.push('/article')
 }
 
 const handleSelectMessage = (index: any) => {
@@ -101,7 +101,7 @@ const articleList = ref([
 
 <template>
   <!-- Head -->
-  <div class="flex flex-col bg-white min-h-screen outline-none">
+  <div class=" min-h-screen w-full flex flex-col bg-white outline-none">
     <div class="flex justify-around bg-white h-16 w-full">
       <div class=" flex flex-1 flex-row items-center h-16 bg-gray-300">
         <div class="flex justify-center items-center h-full w-1/12 mx-2">
@@ -129,7 +129,6 @@ const articleList = ref([
                   <el-dropdown-item>
                     <a @click="handleLogOut">退出登陆</a>
                   </el-dropdown-item>
- 0
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
@@ -147,84 +146,13 @@ const articleList = ref([
             </template>
           </el-dropdown>
           <span class="2xl:mx-6 lg:mx-4 md:mx-2 sm:mx-0 cursor-pointer text-base" @click="handleShowHistory">历史记录</span>
-          <span class="2xl:mx-6 lg:mx-4 md:mx-2 sm:mx-0 cursor-pointer text-base" @click="handleShowContentCenter">内容中心</span>
+          <span class="2xl:mx-6 lg:mx-4 md:mx-2 sm:mx-0 cursor-pointer text-base"
+            @click="handleShowContentCenter">内容中心</span>
         </div>
       </div>
     </div>
-
-    <!--轮播图  -->
-    <div>
-      <el-carousel height="200px" class="" motion-blur>
-        <el-carousel-item v-for="item in 4" :key="item">
-          <img src="@/assets/avator.jpg" class="h-full w-full object-contain">
-        </el-carousel-item>
-      </el-carousel>
-    </div>
-
-    <!-- 主体部分 -->
-    <div class="flex h-lvh w-full ">
-      <el-row class=" flex h-full w-full">
-        <el-col :span="15" class="flex bg-gray-100 h-full w-full">
-          <el-tabs v-model="menubar" class="p-4" @tab-click="handleSelectMenubar">
-            <el-tab-pane label="推荐" name="first" class="flex flex-col h-full w-full p-2">
-              <div class="flex flex-row bg-white h-32 w-full mb-1 border-solid border-gray border-b rounded-md"
-                v-for="article in articleList" :key="article.id">
-                <div class=" flex w-3/12 h-full">
-                  <img src="@/assets/security.png" class=" flex h-full w-full object-cover">
-                </div>
-                <div class="flex flex-col w-9/12 ">
-                  <div class="flex flex-col w-full h-full">
-                    <h1 class="flex px-4 py-1 text-lg cursor-pointer text-gray-700" @click="handleShowDetail">{{
-                      article.title }}</h1>
-                    <p class="flex px-4 text-sm cursor-default">{{ article.summary }}</p>
-                  </div>
-                  <span class="flex flex-row items-center px-4 py-1 text-sm text-gray-700 cursor-default">
-                    <a class="flex">收藏数: {{ article.bookmarkCount }}</a>
-                    <a class="flex mx-10">点赞数: {{ article.likesCount }}</a>
-                    <a class="flex">阅读数: {{ article.readingCount }}</a>
-                    <a class="flex mx-10">作者: {{ article.author }}</a>
-                  </span>
-                </div>
-              </div>
-            </el-tab-pane>
-            <el-tab-pane label="资讯" name="second">
-              Config
-            </el-tab-pane>
-            <el-tab-pane label="占位" name="third">
-              Role
-            </el-tab-pane>
-            <el-tab-pane label="占位" name="fourth">
-              Task
-            </el-tab-pane>
-          </el-tabs>
-        </el-col>
-
-        <el-col :span="9" class="flex h-full w-full">
-          <div class="flex flex-col w-full h-full bg-slate-200 items-center py-4">
-            <div class="block w-4/5 h-96 bg-gray-100  border rounded-lg shadow-gray-400 shadow-sm">
-              <div class="flex flex-col h-full w-full">
-                <div class="flex flex-row-reverse items-center pr-4 pt-4 mb-2" title="更多">
-                  <span class="flex cursor-pointer " @click="handleShowMore">
-                    <el-icon><ArrowRightBold /></el-icon>
-                  </span>
-                  <span class="flex cursor-pointer " @click="handleShowMore">更多</span>
-                </div>
-                <div class="flex flex-col h-full w-full">
-                  <div class="flex flex-row justify-between h-full w-full" v-for="item in 10" :key="item">
-                    <span class="flex pl-6 cursor-default">文章标题</span>
-                    <span class="flex pr-6 cursor-default">热度</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </el-col>
-      </el-row>
-
-    </div>
-    <!-- foot部分 -->
-    <div class="flex h-52 w-full items-center justify-center bg-gray-400">
-      <h1 class=" text-gray-600 font-bold text-3xl">欢迎来到chakra的网站,希望你有一个不错的体验</h1>
+    <div class="min-h-screen w-full">
+      <RouterView></RouterView>
     </div>
 
   </div>

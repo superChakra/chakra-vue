@@ -6,6 +6,8 @@ export default {
       backgroundImage: {
         "logo-url": "url('@/assets/logo.png')",
         "login-url": "url('@/assets/login.png')",
+        "temp-url": "url('@/asstes/avator.jpg')",
+        "work-center-url": "url('@/assets/work-center.png')",
       },
       height: {
         160: "40rem",

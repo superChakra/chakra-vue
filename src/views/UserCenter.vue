@@ -10,18 +10,11 @@ const handleSelectView = (index: any) => {
 }
 </script>
 <template>
-  <div class="flex h-lvh w-full bg-gray-300">
+  <div class="flex min-h-screen w-full bg-gray-300">
     <el-container class="user-layout-container" style="height:auto">
       <el-aside width="200px">
         <el-scrollbar>
           <el-menu @select="handleSelectView" default-active="/user-center/person">
-            <el-menu-item-group>
-              <el-menu-item index="/">
-                <a class=" text-yellow-800 font-bold">
-                  主页面
-                </a>
-              </el-menu-item>
-            </el-menu-item-group>
             <el-menu-item-group>
               <el-menu-item index="/user-center/profile">个人资料</el-menu-item>
               <el-menu-item index="/user-center/account">账号设置</el-menu-item>
