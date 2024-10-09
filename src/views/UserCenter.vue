@@ -10,7 +10,7 @@ const handleSelectView = (index: any) => {
 }
 </script>
 <template>
-  <div class="flex min-h-screen w-full bg-gray-300">
+  <div class="flex min-h-screen w-full bg-gray-200">
     <el-container class="user-layout-container" style="height:auto">
       <el-aside width="200px">
         <el-scrollbar>
@@ -31,7 +31,7 @@ const handleSelectView = (index: any) => {
         </el-scrollbar>
       </el-aside>
 
-      <el-container class="flex h-full w-full bg-sky-100">
+      <el-container class="flex h-full w-full bg-white">
         <el-main>
           <RouterView />
         </el-main>

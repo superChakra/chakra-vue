@@ -8,7 +8,7 @@ const handleRemoveFavorite = () => {
 }
 </script>
 <template>
-  <div class="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+  <div class="min-h-screen bg-gray-50 flex items-center justify-center p-6">
     <div class="bg-white shadow-md rounded-lg w-full p-8 space-y-3">
       <div class="h-16 w-full flex justify-end items-center">
         <el-button @click="handleRemoveAllFavorite" type="danger" class="w-28">清空收藏</el-button>

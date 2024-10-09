@@ -25,7 +25,7 @@ const handleRemoveArticle = ()=>{
           <h1 class="text-xl text-gray-700 cursor-pointer">标题</h1>
           <p class="text-base text-gray-600 my-2">文本摘要</p>
           <div class="flex flex-row items-center">
-            <span class="flex flex-row justify-start space-x-20 items-center w-2/3">
+            <span class="flex flex-row justify-start space-x-3 md:space-x-6 lg:space-x-14 items-center w-2/3">
               <a class="flex">收藏数: {{ }}</a>
               <a class="flex">点赞数: {{ }}</a>
               <a class="flex">阅读数: {{ }}</a>

@@ -14,7 +14,6 @@ const router = createRouter({
           name: "main",
           component: () => import("@/views/home/Main.vue"),
         },
-
         {
           path: "/user-center",
           name: "userCenter",
@@ -45,6 +44,36 @@ const router = createRouter({
               name: "favorite",
               component: () => import("@/views/user/Favorite.vue"),
             },
+            {
+              path: "password",
+              name: "changePassword",
+              component: () => import("@/views/user/ChangePassword.vue"),
+            },
+            {
+              path: "phone",
+              name: "changePhone",
+              component: () => import("@/views/user/ChangePhone.vue"),
+            },
+            {
+              path: "email",
+              name: "changeEmail",
+              component: () => import("@/views/user/ChangeEmail.vue"),
+            },
+            {
+              path: "login-record",
+              name: "loginRecord",
+              component: () => import("@/views/user/LoginRecord.vue"),
+            },
+            {
+              path: "auth-student",
+              name: "studentAuth",
+              component: () => import("@/views/user/StudentAuth.vue"),
+            },
+            {
+              path: "auth-person",
+              name: "personAuth",
+              component: () => import("@/views/user/PersonAuth.vue"),
+            },
           ],
         },
         {
@@ -70,9 +99,9 @@ const router = createRouter({
           component: () => import("@/views/content/ArticleDetail.vue"),
         },
         {
-          path: "/project",
-          name: "projectCenter",
-          component: () => import("@/views/ProjectCenter.vue"),
+          path: "/software-center",
+          name: "softwareCenter",
+          component: () => import("@/views/SoftwareCenter.vue"),
         },
         {
           path: "/software",
@@ -80,11 +109,31 @@ const router = createRouter({
           component: () => import("@/views/software/Software.vue"),
           children: [
             {
-              path: "software-detail",
+              path: "detail",
               name: "softwareDetail",
               component: () => import("@/views/software/SoftwareDetail.vue"),
             },
+            {
+              path: "sort",
+              name: "softwareSort",
+              component: () => import("@/views/software/SoftwareSort.vue"),
+            },
           ],
+        },
+        {
+          path: "/game-center",
+          name: "gameCenter",
+          component: () => import("@/views/GameCenter.vue"),
+        },
+        {
+          path: "/project-center",
+          name: "projectCenter",
+          component: () => import("@/views/ProjectCenter.vue"),
+        },
+        {
+          path: "/project-detail",
+          name: "projectDetail",
+          component: () => import("@/views/project/ProjectDetail.vue"),
         },
       ],
     },

@@ -102,26 +102,27 @@ const articleList = ref([
 <template>
   <!-- Head -->
   <div class=" min-h-screen w-full flex flex-col bg-white outline-none">
-    <div class="flex justify-around bg-white h-16 w-full">
-      <div class=" flex flex-1 flex-row items-center h-16 bg-gray-300">
-        <div class="flex justify-center items-center h-full w-1/12 mx-2">
+    <div class="flex justify-around bg-white h-16 w-full ">
+      <div class=" h-16 w-full flex flex-row items-center p-2 space-x-1 md:space-x-6 lg:space-x-10 bg-gray-300">
+        <div class="flex justify-start items-center h-full w-1/12">
           <a href="/" class="bg-logo-url bg-cover h-14 w-14" title="logo"></a>
         </div>
-        <div class=" flex flex-row justify-center items-center h-full w-4/12 lg:mx-6 md:mx-4 sm:mx-2">
-          <a href="/" title="首页" class="text-xl mx-3 2xl:mx-10 lg:mx-7 md:mx-4 ">首页</a>
-          <a href="/blog" title="博客" class="text-xl mx-3 2xl:mx-10 lg:mx-7 md:mx-4">博客</a>
-          <a href="/project" title="项目" class="text-xl mx-3  2xl:mx-10 lg:mx-7 md:mx-4">项目</a>
-          <a href="#" title="占位符" class="text-xl mx-3 2xl:mx-10 lg:mx-7 md:mx-4">占位</a>
+        <div
+          class=" flex flex-row justify-center items-center h-full w-4/12 space-x-2 md:space-x-4 lg:space-x-6 xl:space-x-14  ">
+          <a href="/" title="首页" class="text-lg ">首页</a>
+          <a href="/project-center" title="项目中心" class="text-lg ">项目</a>
+          <a href="/software-center" title="软件中心" class="text-lg ">软件</a>
+          <a href="/game-center" title="游戏中心" class="text-lg">游戏</a>
         </div>
-        <div class="flex items-center h-full w-3/12 mx-3 -ml-6">
-          <el-input v-model="searchInput" placeholder="请输入搜索内容" class="h-8 w-4/5">
+        <div class="flex items-center h-full w-3/12">
+          <el-input v-model="searchInput" placeholder="请输入搜索内容" class="h-8 w-3/5">
             <template #append>
               <el-button :icon="Search" @click="handleSearch" />
             </template>
           </el-input>
         </div>
-        <div class="flex flex-row items-center h-full w-4/12">
-          <div @click="handleCheckLoginStatus" title="用户" class="flex items-center h-16 w-16 sm:mx-2 md:mx-4 2xl:mx-10">
+        <div class="h-full w-4/12 flex flex-row justify-end items-center space-x-2 lg:space-x-4 xl:space-x-10 ">
+          <div @click="handleCheckLoginStatus" title="用户" class="flex items-center h-16 w-16">
             <el-dropdown>
               <img :src="userAvator" class="rounded-full h-14 w-14 object-cover">
               <template #dropdown>
@@ -133,7 +134,7 @@ const articleList = ref([
               </template>
             </el-dropdown>
           </div>
-          <el-dropdown @command="handleSelectMessage" class="2xl:mx-6 lg:mx-4 md:mx-2 sm:mx-0 ">
+          <el-dropdown @command="handleSelectMessage" class="">
             <span class="text-base text-black">消息</span>
             <template #dropdown>
               <el-dropdown-menu>
@@ -145,9 +146,8 @@ const articleList = ref([
               </el-dropdown-menu>
             </template>
           </el-dropdown>
-          <span class="2xl:mx-6 lg:mx-4 md:mx-2 sm:mx-0 cursor-pointer text-base" @click="handleShowHistory">历史记录</span>
-          <span class="2xl:mx-6 lg:mx-4 md:mx-2 sm:mx-0 cursor-pointer text-base"
-            @click="handleShowContentCenter">内容中心</span>
+          <span class=" cursor-pointer text-base" @click="handleShowHistory">历史记录</span>
+          <span class=" cursor-pointer text-base" @click="handleShowContentCenter">内容中心</span>
         </div>
       </div>
     </div>

@@ -51,7 +51,7 @@ const cancelEdit = () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+  <div class="min-h-screen bg-gray-100 flex items-center justify-center p-8">
     <div class="bg-white shadow-md rounded-lg w-full max-w-5xl p-8">
       <!-- 展示个人信息 -->
       <div v-if="!isEdit">

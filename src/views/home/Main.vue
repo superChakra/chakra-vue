@@ -128,11 +128,11 @@ const articleList = ref([
                       article.title }}</h1>
                     <p class="flex px-4 text-sm cursor-default">{{ article.summary }}</p>
                   </div>
-                  <span class="flex flex-row items-center px-4 py-1 text-sm text-gray-700 cursor-default">
+                  <span class="flex flex-row items-center space-x-6 md:space-x-2 px-4 py-1 text-sm text-gray-700 cursor-default">
                     <a class="flex">收藏数: {{ article.bookmarkCount }}</a>
-                    <a class="flex mx-10">点赞数: {{ article.likesCount }}</a>
+                    <a class="flex ">点赞数: {{ article.likesCount }}</a>
                     <a class="flex">阅读数: {{ article.readingCount }}</a>
-                    <a class="flex mx-10">作者: {{ article.author }}</a>
+                    <a class="flex ">作者: {{ article.author }}</a>
                   </span>
                 </div>
               </div>
@@ -175,7 +175,7 @@ const articleList = ref([
 
     </div>
     <!-- foot部分 -->
-    <div class="flex h-52 w-full items-center justify-center bg-gray-400">
+    <div class="flex h-20 w-full items-center justify-center bg-gray-400">
       <h1 class=" text-gray-600 font-bold text-3xl">欢迎来到chakra的网站,希望你有一个不错的体验</h1>
     </div>
   </div>
