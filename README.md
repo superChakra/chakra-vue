@@ -4,5 +4,7 @@
 
 # 启动命令
 npm --version #检查是否具有启动环境
+</br>
 npm install  #安装所需要的依赖
+</br>
 npm run server #项目启动命令
